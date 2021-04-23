@@ -246,10 +246,15 @@ return [
             'url'         => '/home',
             'icon'        => 'fas fa-fw fa-home',
         ],
+        [
+            'text'        => 'Todo',
+            'url'         => '/admin/todos',
+            'icon'        => 'fas fa-fw fa-list',
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
-            'url'  => 'profile',
+            'url'  => '/admin/profile',
             'icon' => 'fas fa-fw fa-user',
         ],
         // [
