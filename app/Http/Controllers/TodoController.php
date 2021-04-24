@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 class TodoController extends Controller
 {
     protected $perPage;
+
+    public function __construct()
+    {
+        $this->middleware(['permission:create todos|edit todos|delete todos']);
+    }
+
     /**
      * Display a listing of the resource.
      *

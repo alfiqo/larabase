@@ -45,12 +45,12 @@
                             <td>{{$todo->name}}</td>
                             <td class="text-center">
                                 <div class="form-inline d-inline-flex">
-                                    <a href="{{route('todos.edit', $todo->id)}}" class="btn btn-secondary btn-small" title="edit"><i class="fa fa-edit"></i></a>
+                                    <a href="{{route('todos.edit', $todo->id)}}" class="btn btn-secondary btn-small" title="edit" @cannot('edit todos') disabled="disabled"@endcannot><i class="fa fa-edit"></i></a>
                                     &nbsp;
                                     <form action="{{ route('todos.destroy', $todo->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-small" title="hapus"><i class="fa fa-trash"></i></button>
+                                        <button type="submit" class="btn btn-danger btn-small" title="hapus" @cannot('delete todos') disabled="disabled"@endcannot><i class="fa fa-trash"></i></button>
                                     </form>
                                 </div>
                             </td>
