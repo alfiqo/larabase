@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Todo;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
-class TodoController extends Controller
+class RoleController extends Controller
 {
     protected $perPage;
 
     public function __construct()
     {
-        $this->middleware(['permission:create todos|edit todos|delete todos']);
+        $this->middleware(['permission:create roles|edit roles|delete roles']);
     }
 
     /**
@@ -23,8 +23,8 @@ class TodoController extends Controller
     {
         $this->perPage = (int) config('custom.perPage');
 
-        $todos = Todo::latest()->paginate($this->perPage);
-        return view('todo.index', compact('todos'));
+        $roles = Role::latest()->paginate($this->perPage);
+        return view('role.index', compact('roles'));
     }
 
     /**
@@ -34,7 +34,7 @@ class TodoController extends Controller
      */
     public function create()
     {
-        return view('todo.create');
+        return view('role.create');
     }
 
     /**
@@ -49,12 +49,12 @@ class TodoController extends Controller
             'name' => 'required'
         ]);
 
-        Todo::create([
-            'name' => $request->name
+        Role::create([
+            'name' => strtolower($request->name)
         ]);
 
-        return redirect()->route('todos.index')->with([
-            'status' => 'Todo telah berhasil disimpan',
+        return redirect()->route('roles.index')->with([
+            'status' => 'Role telah berhasil disimpan',
             'alert' => 'success'
         ]);
     }
@@ -76,9 +76,9 @@ class TodoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Todo $todo)
+    public function edit(Role $role)
     {
-        return view('todo.create', ['todo' => $todo]);
+        return view('role.create', ['role' => $role]);
     }
 
     /**
@@ -88,18 +88,18 @@ class TodoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Todo $todo)
+    public function update(Request $request, Role $role)
     {
         $request->validate([
             'name' => 'required'
         ]);
 
-        $todo->update([
+        $role->update([
             'name' => $request->name
         ]);
 
-        return redirect()->route('todos.index')->with([
-            'status' => 'Todo telah berhasil diubah',
+        return redirect()->route('roles.index')->with([
+            'status' => 'Role telah berhasil diubah',
             'alert' => 'info'
         ]);
     }
@@ -110,12 +110,12 @@ class TodoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Todo $todo)
+    public function destroy(Role $role)
     {
-        $todo->delete();
+        $role->delete();
 
-        return redirect()->route('todos.index')->with([
-            'status' => 'Todo telah berhasil dihapus',
+        return redirect()->route('roles.index')->with([
+            'status' => 'Role telah berhasil dihapus',
             'alert' => 'danger'
         ]);
     }

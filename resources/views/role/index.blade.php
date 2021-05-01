@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-<h1>Todo</h1>
+<h1>Role</h1>
 @stop
 
 @section('content')
@@ -16,9 +16,9 @@
         @endif
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Todo List</h3>
+                <h3 class="card-title">Role List</h3>
                 <div class="float-right">
-                    <a href="{{route('todos.create')}}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah</a>
+                    <a href="{{route('roles.create')}}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah</a>
                 </div>
             </div>
             <!-- /.card-header -->
@@ -27,7 +27,7 @@
                     <thead>
                         <tr class="text-center">
                             <th style="width: 50px">#</th>
-                            <th>Task</th>
+                            <th>Role</th>
                             <th style="width: 140px;">Action</th>
                         </tr>
                     </thead>
@@ -39,20 +39,22 @@
                         $currentNumber = ($pageNumber - 1) * $perPage + $number;
                         @endphp
 
-                        @forelse($todos as $key => $todo)
+                        @forelse($roles as $key => $role)
                         <tr>
                             <td>{{$currentNumber++}}</td>
-                            <td>{{$todo->name}}</td>
+                            <td>{{$role->name}}</td>
                             <td class="text-center">
+                                @if($role->name != 'super-admin')
                                 <div class="form-inline d-inline-flex">
-                                    <a href="{{route('todos.edit', $todo->id)}}" class="btn btn-secondary btn-sm" title="edit" @cannot('edit todos') disabled="disabled"@endcannot><i class="fa fa-edit"></i></a>
+                                    <a href="{{route('roles.edit', $role->id)}}" class="btn btn-secondary btn-sm" title="edit" @cannot('edit roles') disabled="disabled"@endcannot><i class="fa fa-edit"></i></a>
                                     &nbsp;
-                                    <form action="{{ route('todos.destroy', $todo->id) }}" method="POST">
+                                    <form action="{{ route('roles.destroy', $role->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm" title="hapus" @cannot('delete todos') disabled="disabled"@endcannot><i class="fa fa-trash"></i></button>
+                                        <button type="submit" class="btn btn-danger btn-sm" title="hapus" @cannot('delete roles') disabled="disabled"@endcannot><i class="fa fa-trash"></i></button>
                                     </form>
                                 </div>
+                                @endif
                             </td>
                         </tr>
                         @empty
@@ -68,7 +70,7 @@
             <!-- /.card-body -->
             <div class="card-footer clearfix">
                 <div class="float-right">
-                    {{ $todos->onEachSide(1)->links() }}
+                    {{ $roles->onEachSide(1)->links() }}
                 </div>
             </div>
         </div>

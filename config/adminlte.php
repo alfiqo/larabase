@@ -246,16 +246,22 @@ return [
             'url'         => '/home',
             'icon'        => 'fas fa-fw fa-home',
         ],
+        ['header' => 'MASTER'],
         [
             'text'        => 'Todo',
             'url'         => '/admin/todos',
             'icon'        => 'fas fa-fw fa-list',
         ],
-        ['header' => 'account_settings'],
+        ['header' => 'PENGATURAN'],
         [
             'text' => 'profile',
             'url'  => '/admin/profile',
             'icon' => 'fas fa-fw fa-user',
+        ],
+        [
+            'text' => 'Role',
+            'url'  => '/admin/roles',
+            'icon' => 'fas fa-fw fa-users',
         ],
         // [
         //     'text' => 'change_password',

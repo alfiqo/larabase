@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TodoController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,5 +26,6 @@ Route::middleware('auth')->group(function() {
     Route::prefix('admin')->group(function () {
         Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
         Route::resource('todos', TodoController::class);
+        Route::resource('roles', RoleController::class);
     });
 });
