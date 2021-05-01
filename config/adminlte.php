@@ -263,6 +263,11 @@ return [
             'url'  => '/admin/roles',
             'icon' => 'fas fa-fw fa-users',
         ],
+        [
+            'text' => 'Permission',
+            'url'  => '/admin/permissions',
+            'icon' => 'fas fa-fw fa-user-lock',
+        ],
         // [
         //     'text' => 'change_password',
         //     'url'  => 'admin/settings',
