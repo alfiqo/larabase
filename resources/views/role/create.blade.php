@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Role')
 
 @section('content_header')
 <h1>Todo</h1>
@@ -24,7 +24,7 @@
     <div class="col-12">
         <div class="card card-info">
             <div class="card-header">
-                <h3 class="card-title">Tambah Role</h3>
+                <h3 class="card-title">Add New Role</h3>
             </div>
             <!-- /.card-header -->
             <!-- form start -->
@@ -45,8 +45,8 @@
 
                 <div class="card-footer">
                     <div class="float-right">
-                        <a href="{{route('roles.index')}}" class="btn btn-default">Batal</a>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <a href="{{route('roles.index')}}" class="btn btn-default">Cancel</a>
+                        <button type="submit" class="btn btn-primary">Save</button>
                     </div>
                 </div>
             </form>

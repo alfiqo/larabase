@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Todo')
 
 @section('content_header')
 <h1>Todo</h1>
@@ -18,7 +18,7 @@
             <div class="card-header">
                 <h3 class="card-title">Todo List</h3>
                 <div class="float-right">
-                    <a href="{{route('todos.create')}}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah</a>
+                    <a href="{{route('todos.create')}}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Add New</a>
                 </div>
             </div>
             <!-- /.card-header -->
@@ -50,7 +50,7 @@
                                     <form action="{{ route('todos.destroy', $todo->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm" title="hapus" @cannot('delete todos') disabled="disabled"@endcannot><i class="fa fa-trash"></i></button>
+                                        <button type="submit" class="btn btn-danger btn-sm" title="delete" @cannot('delete todos') disabled="disabled"@endcannot><i class="fa fa-trash"></i></button>
                                     </form>
                                 </div>
                             </td>

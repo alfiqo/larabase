@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Role')
 
 @section('content_header')
 <h1>Role</h1>
@@ -18,7 +18,7 @@
             <div class="card-header">
                 <h3 class="card-title">Role List</h3>
                 <div class="float-right">
-                    <a href="{{route('roles.create')}}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah</a>
+                    <a href="{{route('roles.create')}}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Add New</a>
                 </div>
             </div>
             <!-- /.card-header -->
@@ -46,12 +46,14 @@
                             <td class="text-center">
                                 @if($role->name != 'super-admin')
                                 <div class="form-inline d-inline-flex">
-                                    <a href="{{route('roles.edit', $role->id)}}" class="btn btn-secondary btn-sm" title="edit" @cannot('edit roles') disabled="disabled"@endcannot><i class="fa fa-edit"></i></a>
+                                    <a href="{{route('roles.setting', $role->id)}}" class="btn btn-info btn-sm" title="role settings" @cannot('edit roles') disabled="disabled" @endcannot><i class="fa fa-cogs"></i></a>
+                                    &nbsp;
+                                    <a href="{{route('roles.edit', $role->id)}}" class="btn btn-secondary btn-sm" title="edit" @cannot('edit roles') disabled="disabled" @endcannot><i class="fa fa-edit"></i></a>
                                     &nbsp;
                                     <form action="{{ route('roles.destroy', $role->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm" title="hapus" @cannot('delete roles') disabled="disabled"@endcannot><i class="fa fa-trash"></i></button>
+                                        <button type="submit" class="btn btn-danger btn-sm" title="delete" @cannot('delete roles') disabled="disabled" @endcannot><i class="fa fa-trash"></i></button>
                                     </form>
                                 </div>
                                 @endif

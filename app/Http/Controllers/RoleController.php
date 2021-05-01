@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
@@ -117,6 +118,39 @@ class RoleController extends Controller
         return redirect()->route('roles.index')->with([
             'status' => 'Role telah berhasil dihapus',
             'alert' => 'danger'
+        ]);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function setting(Role $role)
+    {
+        $permissions = Permission::whereNotIn('id',  $role->permissions->pluck('id'))->get();
+
+        return view('role.setting', ['role' => $role, 'permissions' => $permissions]);
+    }
+
+    public function revokePermission(Role $role, Permission $permission)
+    {
+        $role->revokePermissionTo($permission->name);
+
+        return redirect()->route('roles.setting', $role)->with([
+            'status' => 'Permission telah berhasil dihapus',
+            'alert' => 'danger'
+        ]);
+    }
+
+    public function givePermission(Role $role, Request $request)
+    {
+        $role->givePermissionTo($request->permission);
+
+        return redirect()->route('roles.setting', $role)->with([
+            'status' => 'Permission telah berhasil diberikan',
+            'alert' => 'success'
         ]);
     }
 }

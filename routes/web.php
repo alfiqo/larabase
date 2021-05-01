@@ -28,6 +28,9 @@ Route::middleware('auth')->group(function() {
         Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
         Route::resource('todos', TodoController::class);
         Route::resource('roles', RoleController::class);
+        Route::get('roles/{role}/settings', [RoleController::class, 'setting'])->name('roles.setting');
+        Route::delete('roles/{role}/settings/{permission}/revoke', [RoleController::class, 'revokePermission'])->name('roles.revoke_permission');
+        Route::post('roles/{role}/settings', [RoleController::class, 'givePermission'])->name('roles.give_permission');
         Route::resource('permissions', PermissionController::class);
     });
 });
