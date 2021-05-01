@@ -18,6 +18,9 @@
 @elseif ($menuItemHelper->isLink($item))
 
     {{-- Link --}}
-    @include('adminlte::partials.sidebar.menu-item-link')
+    {{-- @include('adminlte::partials.sidebar.menu-item-link') --}}
 
+    @if(Gate::check('create '. strtolower($item['text'])) || Gate::check('view '. strtolower($item['text'])))
+        @include('adminlte::partials.sidebar.menu-item-link')
+    @endif
 @endif

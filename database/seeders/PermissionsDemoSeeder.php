@@ -23,37 +23,43 @@ class PermissionsDemoSeeder extends Seeder
         Permission::create(['name' => 'edit todos']);
         Permission::create(['name' => 'delete todos']);
         Permission::create(['name' => 'create todos']);
+        Permission::create(['name' => 'view dashboard']);
+        Permission::create(['name' => 'view profile']);
 
         // create roles and assign existing permissions
         $role1 = Role::create(['name' => 'writer']);
         $role1->givePermissionTo('create todos');
         $role1->givePermissionTo('edit todos');
+        $role1->givePermissionTo('view dashboard');
+        $role1->givePermissionTo('view profile');
 
 
         $role2 = Role::create(['name' => 'admin']);
         $role2->givePermissionTo('create todos');
         $role2->givePermissionTo('edit todos');
         $role2->givePermissionTo('delete todos');
+        $role2->givePermissionTo('view dashboard');
+        $role2->givePermissionTo('view profile');
 
         $role3 = Role::create(['name' => 'super-admin']);
         // gets all permissions via Gate::before rule; see AuthServiceProvider
 
         // create demo users
         $user = \App\Models\User::factory()->create([
-            'name' => 'Example User',
-            'email' => 'test@example.com',
+            'name' => 'User',
+            'email' => 'user@larabase.com',
         ]);
         $user->assignRole($role1);
 
         $user = \App\Models\User::factory()->create([
-            'name' => 'Example Admin User',
-            'email' => 'admin@example.com',
+            'name' => 'Administrator',
+            'email' => 'admin@larabase.com',
         ]);
         $user->assignRole($role2);
 
         $user = \App\Models\User::factory()->create([
-            'name' => 'Example Super-Admin User',
-            'email' => 'superadmin@example.com',
+            'name' => 'Super Administrator',
+            'email' => 'superadmin@larabase.com',
         ]);
         $user->assignRole($role3);
     }

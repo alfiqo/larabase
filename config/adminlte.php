@@ -248,7 +248,7 @@ return [
         ],
         ['header' => 'MASTER'],
         [
-            'text'        => 'Todo',
+            'text'        => 'Todos',
             'url'         => '/admin/todos',
             'icon'        => 'fas fa-fw fa-list',
         ],
@@ -259,12 +259,12 @@ return [
             'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text' => 'Role',
+            'text' => 'Roles',
             'url'  => '/admin/roles',
             'icon' => 'fas fa-fw fa-users',
         ],
         [
-            'text' => 'Permission',
+            'text' => 'Permissions',
             'url'  => '/admin/permissions',
             'icon' => 'fas fa-fw fa-user-lock',
         ],
