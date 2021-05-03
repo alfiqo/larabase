@@ -46,9 +46,9 @@
                             <td class="text-center">
                                 @if($role->name != 'super-admin')
                                 <div class="form-inline d-inline-flex">
-                                    <a href="{{route('roles.setting', $role->id)}}" class="btn btn-info btn-sm" title="role settings" @cannot('edit roles') disabled="disabled" @endcannot><i class="fa fa-cogs"></i></a>
+                                    <a href="{{route('roles.setting', $role->id)}}" class="btn btn-info btn-sm @cannot('setting roles') disabled @endcannot" title="role settings"><i class="fa fa-cogs"></i></a>
                                     &nbsp;
-                                    <a href="{{route('roles.edit', $role->id)}}" class="btn btn-secondary btn-sm" title="edit" @cannot('edit roles') disabled="disabled" @endcannot><i class="fa fa-edit"></i></a>
+                                    <a href="{{route('roles.edit', $role->id)}}" class="btn btn-secondary btn-sm @cannot('edit roles') disabled @endcannot" title="edit"><i class="fa fa-edit"></i></a>
                                     &nbsp;
                                     <form action="{{ route('roles.destroy', $role->id) }}" method="POST">
                                         @csrf
