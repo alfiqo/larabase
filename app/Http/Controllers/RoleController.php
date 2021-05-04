@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -130,8 +131,9 @@ class RoleController extends Controller
     public function setting(Role $role)
     {
         $permissions = Permission::whereNotIn('id',  $role->permissions->pluck('id'))->get();
+        $usersNotAssigned = User::doesntHave('roles')->get();
 
-        return view('role.setting', ['role' => $role, 'permissions' => $permissions]);
+        return view('role.setting', ['role' => $role, 'permissions' => $permissions, 'usersNotAssigned' => $usersNotAssigned]);
     }
 
     public function revokePermission(Role $role, Permission $permission)
@@ -150,6 +152,33 @@ class RoleController extends Controller
 
         return redirect()->route('roles.setting', $role)->with([
             'status' => 'Permission telah berhasil diberikan',
+            'alert' => 'success'
+        ]);
+    }
+
+    public function removeUser(Role $role, User $user)
+    {
+        $user->removeRole($role->name);
+
+        return redirect()->back()->with([
+            'status' => 'Role user telah berhasil dicabut',
+            'alert' => 'success'
+        ]);
+    }
+
+    public function assisgnRole(Role $role, User $user)
+    {
+        if($user->hasAllRoles(Role::all())) {
+            return redirect()->back()->with([
+                'status' => 'User telah memiliki role lain',
+                'alert' => 'warning'
+            ]);
+        }
+
+        $user->assignRole($role->name);
+
+        return redirect()->back()->with([
+            'status' => 'User telah berhasil ditambahkan',
             'alert' => 'success'
         ]);
     }
