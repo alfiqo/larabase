@@ -37,7 +37,7 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label for="task">Task</label>
-                        <input type="text" name="name" value="@isset($todo->name) {{$todo->name}} @endisset" class="form-control @error('name') is-invalid @enderror" id="task" placeholder="Masukan task">
+                        <input type="text" name="name" value="@isset($todo->name) {{$todo->name}} @endisset" class="form-control @error('name') is-invalid @enderror" id="task" placeholder="task">
                         @error('name') <p class="text-danger">{{ $message }}</p> @enderror
                     </div>
                 </div>

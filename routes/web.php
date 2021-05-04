@@ -3,6 +3,7 @@
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TodoController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,6 +28,7 @@ Route::middleware('auth')->group(function() {
     Route::prefix('admin')->group(function () {
         Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
         Route::resource('todos', TodoController::class);
+        Route::resource('users', UserController::class);
         Route::resource('roles', RoleController::class);
         Route::get('roles/{role}/settings', [RoleController::class, 'setting'])->name('roles.setting');
         Route::delete('roles/{role}/settings/{permission}/revoke', [RoleController::class, 'revokePermission'])->name('roles.revoke_permission');

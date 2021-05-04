@@ -37,7 +37,7 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label for="name">Permission</label>
-                        <input type="text" name="name" value="@isset($permission->name){{$permission->name}}@endisset" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Masukan permission">
+                        <input type="text" name="name" value="@isset($permission->name){{$permission->name}}@endisset" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="permission">
                         @error('name') <p class="text-danger">{{ $message }}</p> @enderror
                     </div>
                 </div>

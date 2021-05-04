@@ -3,7 +3,7 @@
 @section('title', 'Role')
 
 @section('content_header')
-<h1>Todo</h1>
+<h1>Role</h1>
 @stop
 
 @section('content')
@@ -37,7 +37,7 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label for="name">Role</label>
-                        <input type="text" name="name" value="@isset($role->name){{$role->name}}@endisset" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Masukan role">
+                        <input type="text" name="name" value="@isset($role->name){{$role->name}}@endisset" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="role">
                         @error('name') <p class="text-danger">{{ $message }}</p> @enderror
                     </div>
                 </div>
