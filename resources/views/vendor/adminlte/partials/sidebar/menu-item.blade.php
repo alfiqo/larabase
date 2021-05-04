@@ -13,7 +13,9 @@
 @elseif ($menuItemHelper->isSubmenu($item))
 
     {{-- Treeview menu --}}
-    @include('adminlte::partials.sidebar.menu-item-treeview-menu')
+    @can('view '. strtolower($item['text']))
+        @include('adminlte::partials.sidebar.menu-item-treeview-menu')
+    @endcan
 
 @elseif ($menuItemHelper->isLink($item))
 
