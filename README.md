@@ -1,6 +1,6 @@
 # Larabase
 
-## Fitur Semart Skeleton
+## Fitur Larabase
 
 - Pengaturan User
 
